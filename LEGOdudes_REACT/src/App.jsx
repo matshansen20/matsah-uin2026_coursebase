@@ -6,7 +6,7 @@ function App() {
   const [isOpen, setIsOpen] = useState(false)
   const [cart, setCart] = useState([])
   const [cartQuantity, setCartQuantity] = useState(0)
-
+const [totalsum, setTotalsum] = useState(0)
   console.log("Cart", cart)
 /*
   useEffect kjøres automatisk av React
@@ -38,8 +38,10 @@ function App() {
       Denne useEffect-en kjører kun når cart endres,
       fordi cart er eneste dependency.
     */
-  }, [cart]);
-
+  
+const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0)
+setTotalsum(total)
+}, [cart]);
 
   function Header({setIsOpen, cartQuantity}){
     return(
